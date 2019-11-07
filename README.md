@@ -18,3 +18,5 @@
 -7.4 Решение: https://codesandbox.io/s/task7-4-edxbd
 
 -7.5 Решение: https://codesandbox.io/s/task7-5-xlxi7
+
+-7.6 Решение: https://codesandbox.io/s/task7-6-pmv0t

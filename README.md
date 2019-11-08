@@ -11,6 +11,8 @@
 
 Задание 7.
 
+-7.1 Решение: https://codesandbox.io/s/task7-1-owwe0
+
 -7.2 Решение: https://codesandbox.io/s/task7-2-7rt24 
 
 -7.3 Решение: https://codesandbox.io/s/task7-3-k65e8

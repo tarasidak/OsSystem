@@ -1,0 +1,27 @@
+.visitButton{
+    border: 1px solid lightblue;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.visitButton:hover{
+    text-decoration: none;
+    color: white;
+    background-color: lightblue;
+}
+
+.delButton{
+    margin-left: 10px;
+    padding: 20px;
+    border: 1px solid red;
+    border-radius: 5px;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.delButton:hover{
+    color: white;
+    background-color: red;
+}

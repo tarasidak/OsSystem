@@ -1,37 +1,39 @@
 import React from 'react';
-
+import {connect} from 'react-redux';
 import './information.css'
+import {setAvgPrice, setTotalAmount, setTotalCost} from "../../actions";
 
-let sneakers = require('../../sneaker.json');
+const Information = (props) => {
+    const {
+        avgPrice, totalAmount, totalCost,
+        setAvgPrice, setTotalAmount, setTotalCost
+    } = props;
 
-export default class Information extends React.Component{
-    constructor(props){
-        super(props)
+    return (
+      <div className="information">
+          <div className="totalAmount">Total Amount: {totalAmount} </div>
+          <div className="totalCost">Total Cost: {totalCost}</div>
+          <div className="averagePrice">Average Price: {avgPrice}</div>
+          <button className="clear" onClick={() => {
+              setAvgPrice(0);
+              setTotalAmount(0);
+              setTotalCost(0);
+              localStorage.setItem('savedSneaker', JSON.stringify([]));
+          }}>Clear</button>
+      </div>
+    )
+};
 
-        this.state = {
-            sneakers: [],
-            totalAmount: 0,
-            totalCost: 0,
-            avgPrice: 0
-        }
-        
-        this.totalAmount = this.totalAmount.bind(this);
-    }
+const mapStateToProps = (state) => ({
+    avgPrice: state.commonInfo.avgPrice,
+    totalAmount: state.commonInfo.totalAmount,
+    totalCost: state.commonInfo.totalCost
+});
 
-    totalAmount(){
-        return sneakers.length;
-    }
+const mapDispatchToProps = {
+    setAvgPrice,
+    setTotalAmount,
+    setTotalCost
+};
 
-    render(){
-        const {totalAmount} = this.state;
-
-        return(
-            <div className="information">
-                <div className="totalAmount">Total Amount: {totalAmount} </div>
-                <div className="totalCost">Total Cost: </div>
-                <div className="averagePrice">Average Price: </div>
-                <button className="clear">Clear</button>
-            </div>
-        )
-    }
-}
+export default connect(mapStateToProps, mapDispatchToProps)(Information);

@@ -1,7 +1,0 @@
-.mainCard{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    background-color: rgb(120,120,120);
-}

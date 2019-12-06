@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from '@material-ui/core/Button';
+import {connect} from "react-redux";
+import {setAvgPrice, setTotalAmount, setTotalCost} from "../../actions";
+import {getAvgPrice, getTotalAmount, getTotalCost} from "../cardsDeshboard/helpers";
 
 const CssTextField = withStyles({
   root: {
@@ -38,18 +41,19 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function CustomizedInputs() {
+function rand(addName){
+  let rand = Math.floor(Math.random() * 1000);
+  let randId = rand + addName;
+  return randId;
+}
+
+const CustomizedInputs = (props) => {
   const classes = useStyles();
+  const {setAvgPrice, setTotalAmount, setTotalCost} = props;
 
   const [addName, setAddName] = useState('');
   const [addPrice, setAddPrice] = useState('');
   const [addDesc, setAddDesc] = useState('');
-
-  function rand(){
-    let rand = Math.floor(Math.random() * 1000);
-    let randId = rand + addName;
-    return randId;
-}
 
   return (
     <form className={classes.root} noValidate>
@@ -79,13 +83,25 @@ export default function CustomizedInputs() {
                 onClick={() => {
                     const store = localStorage.getItem('savedSneaker');
                     let savedSneaker = JSON.parse(store);
-                    savedSneaker.push({id: rand(), 'name': addName, 'price': addPrice, 'description': addDesc }) 
-                    console.log(store);
-                    localStorage.setItem('savedSneaker', JSON.stringify(savedSneaker));   
+
+                    savedSneaker.push({id: rand(addName), 'name': addName, 'price': addPrice, 'body': addDesc });
+                    localStorage.setItem('savedSneaker', JSON.stringify(savedSneaker));
+
+                    setAvgPrice(getAvgPrice(savedSneaker));
+                    setTotalAmount(getTotalAmount(savedSneaker));
+                    setTotalCost(getTotalCost(savedSneaker));
                 }}>
             Add Item
         </Button>
         </div>
     </form>
   );
-}
+};
+
+const mapDispatchToProps = {
+  setAvgPrice,
+  setTotalAmount,
+  setTotalCost
+};
+
+export default connect(null, mapDispatchToProps)(CustomizedInputs)

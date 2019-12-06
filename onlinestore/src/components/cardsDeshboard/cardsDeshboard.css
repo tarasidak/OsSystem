@@ -1,3 +1,11 @@
+.cardsContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: rgb(120,120,120);
+}
+
 .mySneak{
     width: 30%;
     border: 1px solid orange;
